@@ -14,7 +14,6 @@ public class Main {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     int articleLastId = 0;
-    Article lastArticle = null;
 
     List<Article> articles = new ArrayList<>();
 
@@ -46,12 +45,12 @@ public class Main {
         }
       }
       else if (cmd.equals("/usr/article/detail")) {
-        if (lastArticle == null){
+        if (articles.isEmpty()  /*lastArticle == null*/){
           System.out.println("게시물이 존재하지 않습니다.");
           continue;
         }
 
-        Article article = lastArticle;
+        Article article = articles.get(articles.size() - 1);
         System.out.println("-게시물 상세내용-");
         System.out.printf("번호 : %d\n", article.id);
         System.out.printf("제목 : %s\n", article.title);
@@ -70,7 +69,7 @@ public class Main {
 
 
         Article article = new Article(id, title, body);
-        lastArticle = article;
+
 
         articles.add(article);
         System.out.println("생성 된 게시물 객체 : " + article);
